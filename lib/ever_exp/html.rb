@@ -3,15 +3,15 @@ require 'nokogiri'
 module EverExp
   class Html
 
-    attr_reader :html
+    attr_reader :html, :location
 
     def initialize path
       @html = File.open(path) { |f| Nokogiri::HTML(f) }
-      @path = path
+      @location = path
     end
 
     def name
-      File.basename(@path).gsub(/\.html$/, '')
+      File.basename(location).gsub(/\.html$/, '')
     end
 
     def isHtml?

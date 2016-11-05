@@ -28,12 +28,15 @@ module EverExp
     end
 
     class FileInFiles
+
+      attr_reader :location
+
       def initialize path
-        @path = path
+        @location = path
       end
 
       def name
-        File.basename @path
+        File.basename location
       end
     end
 
