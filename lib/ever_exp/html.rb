@@ -1,4 +1,5 @@
 require 'nokogiri'
+require 'ever_exp/heading'
 
 module EverExp
   class Html
@@ -49,10 +50,29 @@ module EverExp
     end
 
     def content
-      html.css('body > div').last.to_html
+      _content.to_html
+    end
+
+    def heading
+      h = Heading.new
+      _content.css('div > b, div > span > b').each do |b|
+        level, title = level_title b
+        h.add level, title
+      end
+      h.to_h
     end
 
     private
+
+    def level_title bold_tag
+      level = (bold_tag.parent.name == 'span' ? bold_tag.parent.attr('style').gsub(/[^\d]/, '') : '1')
+      title = bold_tag.text
+      [level, title]
+    end
+
+    def _content
+      html.css('body > div').last
+    end
 
     def parse_meta
       return if @parsed_meta

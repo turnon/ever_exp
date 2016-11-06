@@ -48,4 +48,13 @@ class HtmlTest < Minitest::Test
     assert_match /for Erlang developers<\/a>\.<\/div>\n<div><br><\/div><\/span>\n<\/div>$/, html.content
   end
 
+  def test_heading
+    expected_heading = [
+      {'Platform features' => ['Scalability', 'Fault-tolerance']},
+      {'Language features' => ['Functional programming', 'Extensibility and DSLs']},
+      {'Tooling features' => ['A growing ecosystem', 'Interactive development', 'Erlang compatible']}
+    ]
+    assert_equal expected_heading, html.heading
+  end
+
 end
