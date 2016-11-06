@@ -1,6 +1,8 @@
 module EverExp
   class Files
 
+    attr_accessor :note
+
     include Enumerable
 
     def initialize path

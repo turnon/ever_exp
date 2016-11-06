@@ -4,6 +4,7 @@ module EverExp
   class Html
 
     attr_reader :html, :location
+    attr_writer :note
 
     def initialize path
       @html = File.open(path) { |f| Nokogiri::HTML(f) }

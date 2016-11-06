@@ -19,6 +19,7 @@ module EverExp
       else
         @files = html_or_files
       end
+      html_or_files.note = self
     end
   end
 end
