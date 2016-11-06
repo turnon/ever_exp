@@ -11,6 +11,16 @@ module EverExp
       remove_instance_variable :@notes_hash
     end
 
+    def group_by_tag
+      tag_groups = Hash.new { |hash, tag| hash[tag] = [] }
+      each do |note|
+        note.tag_array.each do |tag|
+          tag_groups[tag] << note
+        end
+      end
+      tag_groups
+    end
+
     private
 
     def files_in dir

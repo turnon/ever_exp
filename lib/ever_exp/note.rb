@@ -13,6 +13,14 @@ module EverExp
       @files || EverExp::WithoutFiles.instance
     end
 
+    def tags
+      html.tags
+    end
+
+    def tag_array
+      tags.split ', '
+    end
+
     def <<(html_or_files)
       if html_or_files.isHtml?
         @html = html_or_files
