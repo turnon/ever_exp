@@ -1,5 +1,6 @@
 require 'test_helper'
 require 'ever_exp/html'
+require 'cgi'
 
 class HtmlTest < Minitest::Test
 
@@ -35,6 +36,23 @@ class HtmlTest < Minitest::Test
   def test_code_blocks
     code_blocks = html.code_blocks
     assert_equal 8, code_blocks.count
+  end
+
+  def test_plain_code
+    expected = %{current_process = self()
+
+# Spawns an Elixir process (not an operating system one!)
+spawn_link(fn ->
+  send current_process, {:msg, "hello world"}
+end)
+
+# Block until the message is received
+receive do
+  {:msg, contents} -> IO.puts contents
+end}
+
+    actual = html.code_blocks[0].plain_code
+    assert_equal expected, actual
   end
 
   def test_imgs

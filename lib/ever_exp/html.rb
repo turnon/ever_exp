@@ -1,5 +1,6 @@
 require 'nokogiri'
 require 'ever_exp/heading'
+require 'ever_exp/nokogiri_xml_element'
 
 module EverExp
   class Html
