@@ -54,13 +54,22 @@ module EverExp
       _content.to_html
     end
 
+    def heading?
+      not heading.empty?
+    end
+
     def heading
+      return @heading if @heading
       h = Heading.new
-      _content.css('div > b, div > span > b').each do |b|
+      heading_elements.each do |b|
         level, title = level_title b
         h.add level, title
       end
-      h.to_h
+      @heading = h.to_h
+    end
+
+    def heading_elements
+      _content.css('div > b, div > span > b')
     end
 
     private
