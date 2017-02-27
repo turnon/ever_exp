@@ -50,6 +50,12 @@ module EverExp
       html.css('img')
     end
 
+    def attachments
+      _content.
+	css('a').
+	select{|a| a.css('img').count > 0}
+    end
+
     def content
       _content.to_html
     end

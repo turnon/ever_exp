@@ -6,6 +6,6 @@ class NotesTest < Minitest::Test
     notes = EverExp::Notes.new File.expand_path('../test_notes', __FILE__)
     assert_equal 3, notes.count
     grape_files = notes.find{ |n| n.title == 'What is Grape?' }.files
-    assert_equal 0, grape_files.count
+    assert_equal 2, grape_files.count
   end
 end

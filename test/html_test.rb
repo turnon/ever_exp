@@ -61,6 +61,12 @@ end}
     assert_equal 'Elixir is a dynamic, functional language desi_files/Image.png', imgs[0].attr('src')
   end
 
+  def test_attachments
+    rel_path = '../test_notes/What is Grape.html'
+    grape = EverExp::Html.new File.expand_path(rel_path, __FILE__)
+    assert_equal 1, grape.attachments.count
+  end
+
   def test_content
     assert_match /^<div>\n<span><div>Elixir is a dynamic/, html.content
     assert_match /for Erlang developers<\/a>\.<\/div>\n<div><br><\/div><\/span>\n<\/div>$/, html.content
