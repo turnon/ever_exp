@@ -30,6 +30,10 @@ module EverExp
       @tags
     end
 
+    def tags_array
+      tags.split ', '
+    end
+
     def created
       parse_meta
       @created
@@ -97,6 +101,7 @@ module EverExp
       @created = parse_date meta_value metas[0]
       @updated = parse_date meta_value metas[1]
       @tags = meta_value metas[2]
+      @tags = meta_value metas[3] if @tags =~ /@/
       @parsed_meta = true
     end
 

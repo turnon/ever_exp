@@ -18,7 +18,7 @@ module EverExp
     end
 
     def tag_array
-      tags.split ', '
+      html.tags_array
     end
 
     def <<(html_or_files)
