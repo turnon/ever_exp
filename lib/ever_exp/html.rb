@@ -91,7 +91,12 @@ module EverExp
     end
 
     def _content
-      html.css('body > div').last
+      return @_content if defined? @_content
+      @_content = html.css('body > div').last
+      return @_content unless breakword = @_content.css('div').select{|n| n['style'] =~ /break-word/}[0]
+      breakword.children.each{|c| c.parent = breakword.parent}
+      breakword.remove
+      @_content
     end
 
     def parse_meta
